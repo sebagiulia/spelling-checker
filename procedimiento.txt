@@ -1,0 +1,53 @@
+Estructuras de Datos y Algoritmos I: Trabajo Práctico Final.
+
+Sebastian Giulianelli.
+
+--- Corrector Ortográfico ---
+
+
+Estructuras de datos elegidas para el trabajo:
+
+  Para almacenar el diccionario se eligió una tabla Hash con una capacidad inicial de 1000.
+El manejo de colisiones que se utilizó es por Encadenamiento. 
+
+  Para almacenar las palabras surgidas a partir de una combinación de n técnicas sobre la palabra
+original se utilizó una tabla Hash con una capacidad inicial de 100.
+
+  Para almacenar las sugerencias de una palabra se utilizó una lista enlazada general [Wlist] con puntero
+al final de la lista.
+
+	Para almacenar las palabras se eligió una estructura [ Word ] que guarde un arreglo de caracteres junto con
+su longitud, de esta forma nos ahorramos el cálculo de esta última a partir de la función strlen muchas veces.
+
+** Todas las funciones que trabajan con Word se encuentran en word.h **
+
+Idea para la generación de sugerencias:
+
+	Cuando se lee una palabra del texto original se verifica que se encuentre en un diccionario, si lo hace, la función
+continúa, si no, se procede a procesar la palabra.
+	Lo primero que se hace al procesar la palabra es crear una lista de sugerencias vacía, luego, sobre una tabla Hash
+se van almacenando todas las palabras que surgen de aplicarle alguna de las técnicas (intercambios, reemplazos,
+eliminación, inserción y división). A medida que se hace esto se va verificando si alguna de estas palabras se
+encuentra en el diccionario, si lo hace, se agrega a la lista de sugerencias. Si al finalizar esto se completó la
+lista de sugerencias, se imprimen y se continúa escaneando el texto original. 
+	Si no se completó la lista de sugerencias, se procede con el proceso de cada una de las palabras almacenadas en la 
+tabla Hash mencionada anteriormente. Nuevamente, estos procesos se almacenan en una nueva tabla Hash y asi sucesivamente
+hasta alcanzar el límite de combinaciones establecido o completar todas las sugerencias.
+
+Aclaraciones:
+
+	Chequeo de duplicados:
+		Chequear duplicados se refiere a verificar que una palabra no repita el mismo proceso de busqueda en un diccionario
+		mas de una vez.
+
+	Opción -cd
+	  La opcíon -cd (Check Duplicates) se agregó debido a que si no se aplica el programa actúa con mayor eficiencia pese
+		a la repeticíon de búsquedas.
+
+	Distancias:
+		Cuando se habla de que una palabra A se encuentra a distancia n sobre otra B se refiere a que B puede transformarse
+		en A a partir de n técnicas consecutivas (intercambios, reemplazos, eliminación, inserción y división).   
+
+
+
+
